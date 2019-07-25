@@ -1,0 +1,67 @@
+schema { 
+   query: Query 
+   mutation : Mutation 
+}
+
+type Book {
+    id: ID
+    name: String
+    pageCount: Int
+    author: Author
+}
+
+type Author {
+    id: ID
+    firstName: String
+    lastName: String
+}
+
+
+type Client {
+  id: ID 
+  clientId : Int 
+  name: String 
+  firstName: String 
+  lastName: String 
+  ssn: String 
+  accounts : [Account]
+}
+
+type NotificationBO {
+    notificationId : Int 
+	receiverId : Int  
+	receiverType : String 
+	originatorId : Int 
+	originatorType : String 
+	title : String 
+	source : String 
+	messagePayload : String 
+	originatorName : String 
+}
+
+type Account { 
+  id: ID  
+  accountShortName: String  
+  clientId: Int  
+  accountId: Int  
+  birth: Long 
+  accountRegName: Int 
+  clients: [Client]  
+  accountNumber: String 
+  repNumber : Int 
+}
+
+type Query { 
+  bookById(id: ID): Book 
+  getAccounts: [Account]  
+  countAccounts: Long  
+  getAccountById (id: Long): Account  
+  getClients: [Client]  
+  countClients: Long  
+  getClientById (id: Long): Client  
+} 
+
+type Mutation { 
+    newAccount (name: String! , age: Int ): Account 
+    newClient (name: String!  , age: Int ): Client 
+}
